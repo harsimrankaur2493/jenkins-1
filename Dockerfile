@@ -1,4 +1,8 @@
-FROM ubuntu:latest
-RUN apt update && apt upgrade -y
-RUN apt install nodejs -y
-RUN node -v
+FROM python:3.9-slim
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+
+CMD ["python", "app.py"]
